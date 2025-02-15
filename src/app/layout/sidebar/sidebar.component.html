@@ -1,0 +1,25 @@
+<aside
+  [ngClass]="{'w-64': isOpen, 'w-24': !isOpen}"
+  class="bg-gray-800 text-white h-screen p-4 transition-all duration-300 flex flex-col items-center">
+     <!-- Profil utilisateur -->
+    <div *ngIf="isOpen" class="flex flex-col items-center mb-6">
+      <div class="bg-white rounded-full p-3 flex items-center justify-center w-20 h-20">
+        <mat-icon style="width: 64px !important; height: 64px !important;" class="text-6xl text-center text-blue-900 ">person</mat-icon>
+      </div>
+      <div *ngIf="user"  class="mt-2 text-center">
+        <p class="text-lg font-semibold">{{ user.userProfile.username }}</p>
+        <p class="text-sm text-gray-400">{{ userRole}}</p>
+      </div>
+    </div>
+  <ul class="w-full">
+    <li *ngFor="let item of filteredMenuItems"
+        [routerLink]="item.route"
+        routerLinkActive="bg-blue-700"
+        class="p-3 flex items-center hover:bg-gray-700 cursor-pointer rounded-lg transition-all duration-200"
+        >
+
+      <mat-icon class="mr-2">{{ item.icon }}</mat-icon>
+      <span *ngIf="isOpen" class="whitespace-nowrap">{{ item.label }}</span>
+    </li>
+  </ul>
+</aside>
