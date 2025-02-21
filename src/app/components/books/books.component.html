@@ -1,1 +1,26 @@
-<p>books works!</p>
+<div class="container mx-auto p-4">
+  <h2 class="text-2xl font-semibold text-center mb-6">📚 Liste des Livres</h2>
+  <div *ngIf="loading()">
+    <p>Chargement des livres...</p>
+  </div>
+  <div *ngIf="!loading()" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+      <mat-card *ngFor="let book of books() " class="rounded-lg shadow-md hover:shadow-lg transition-shadow">
+        <mat-card-header>
+          <mat-card-title class="text-lg font-semibold">{{ book.title }}</mat-card-title>
+          <mat-card-subtitle class="text-sm text-gray-500">par {{ book.author }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p class="text-gray-700 flex text-center gap-2"><mat-icon class="text-blue-950">inventory</mat-icon> Stock: <strong>{{ book.stock }}</strong></p>
+          <p class="text-gray-500 text-sm"><mat-icon>schedule</mat-icon> Ajouté le {{ book.createdAt | date: 'longDate' }}</p>
+        </mat-card-content>
+
+        <mat-card-actions class="flex justify-between mt-4">
+          <button mat-button color="primary" [disabled]="book.stock === 0">Emprunter</button>
+          <button mat-button color="warn">Supprimer</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+

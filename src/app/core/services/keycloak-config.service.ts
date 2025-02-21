@@ -9,7 +9,6 @@ export class KeycloakConfigService {
   private url = environment.keycloakUrl
   private realm = environment.realm
   private clientId = environment.clientId
-  userData: any;
 
   constructor(private keycloak: KeycloakService) {}
 
@@ -27,8 +26,6 @@ export class KeycloakConfigService {
           responseMode: 'fragment',
         }
       });
-      this.userData = this.keycloak.getKeycloakInstance();
-
     } catch (error) {
       console.error('error Keycloak', error);
     }
